@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Genius Generation | QR Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-6 font-sans">
+
+    <div class="max-w-md w-full bg-slate-800 rounded-3xl shadow-2xl p-10 border border-slate-700/50">
+        <div class="mb-8">
+            <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                QR Studio
+            </h1>
+            <p class="text-slate-400 mt-2 font-medium">Strategic Tool for Digital Space Sociology</p>
+        </div>
+
+        <div class="space-y-5">
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2 font-bold">Input Destination</label>
+                <input type="text" id="qr-input" placeholder="https://allthinkers.com" 
+                       class="w-full p-4 rounded-xl bg-slate-900/50 border border-slate-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all text-cyan-50">
+            </div>
+            
+            <button onclick="generateQR()" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-cyan-900/20">
+                Generate Unlimited Code
+            </button>
+        </div>
+
+        <div id="qrcode-container" class="mt-10 flex flex-col items-center hidden">
+            <div id="qrcode" class="p-6 bg-white rounded-2xl shadow-inner border-4 border-slate-700/10"></div>
+            <p class="mt-4 text-slate-500 text-xs italic">Engineered for the Next Genius Generation</p>
+        </div>
+    </div>
+
+    <script>
+        const qrContainer = document.getElementById('qrcode-container');
+        const qrDiv = document.getElementById('qrcode');
+        let qrcode = new QRCode(qrDiv, { width: 256, height: 256 });
+
+        function generateQR() {
+            const data = document.getElementById('qr-input').value;
+            if (data) {
+                qrDiv.innerHTML = ""; // Clear previous
+                new QRCode(qrDiv, {
+                    text: data,
+                    width: 256,
+                    height: 256,
+                    colorDark : "#0f172a",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+                qrContainer.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
